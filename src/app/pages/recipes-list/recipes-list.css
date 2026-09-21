@@ -1,0 +1,96 @@
+.table-wrapper {
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.table-wrapper p {
+  margin: 10px 0;
+}
+
+.table-wrapper h2 {
+  font-size: 18px;
+  margin: 15px 0;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.filters label {
+  font-size: 14px;
+}
+
+.filter-option {
+  margin: 10px 0;
+}
+
+.filter-option label {
+  margin-right: 8px;
+}
+
+.filter-option input {
+  margin-left: 5px;
+}
+
+.filter-option select {
+  margin-left: 8px;
+}
+
+.filter-button {
+  margin: 5px 0 15px 0;
+  padding: 2px 6px;
+}
+
+.recipes-table {
+  width: 480px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.recipes-table th,
+.recipes-table td {
+  border: 1px solid #777;
+  padding: 6px;
+}
+
+.recipes-table th {
+  text-align: center;
+  font-weight: bold;
+}
+
+.recipes-table th:nth-child(1),
+.recipes-table td:nth-child(1) {
+  width: 45px;
+  text-align: center;
+}
+
+.recipes-table th:nth-child(2),
+.recipes-table td:nth-child(2) {
+  width: 150px;
+}
+
+.recipes-table th:nth-child(3),
+.recipes-table td:nth-child(3) {
+  width: 100px;
+}
+
+.recipes-table th:nth-child(4),
+.recipes-table td:nth-child(4) {
+  width: 185px;
+}
+
+.actions-cell {
+  white-space: nowrap;
+}
+
+.actions-cell a {
+  margin-right: 5px;
+}
+
+.action-button {
+  padding: 2px 5px;
+  font-size: 12px;
+}

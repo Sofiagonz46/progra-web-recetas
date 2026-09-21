@@ -3,6 +3,8 @@ import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { Contact } from './pages/contact/contact';
 import { Recipes } from './pages/recipes/recipes';
+import { RecipesList } from './pages/recipes-list/recipes-list';
+import { RecipesDetail } from './pages/recipes-detail/recipes-detail';
 
 export const routes: Routes = [
   {
@@ -21,5 +23,13 @@ export const routes: Routes = [
   {
     path: 'recipes',
     component: Recipes
+  },
+  {
+    path: 'recipes-list',
+    component: RecipesList
+  },
+  {
+    path: 'recipes-detail/:id',
+    component: RecipesDetail
   }
 ];
