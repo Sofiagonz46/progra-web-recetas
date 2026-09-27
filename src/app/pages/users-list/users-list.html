@@ -1,0 +1,23 @@
+<section class="users">
+  @for (user of usersList.users; track user.id) {
+    <article class="card">
+      <h2 class="card-title">{{ user.id }} - {{ user.firstName }} {{ user.lastName }}</h2>
+      <p class="username">{{ '@' + user.username }}</p>
+      <p class="email">{{ user.email }}</p>
+
+      <div class="posts">
+        <h3>Posts</h3>
+        @for (post of getUserPosts(user.id); track post.id) {
+          <div class="post">
+            <p class="post-title">{{ post.id }} - {{ post.title }}</p>
+            <p class="post-body">{{ post.body }}</p>
+          </div>
+        } @empty {
+          <p class="no-posts">This user has no posts</p>
+        }
+      </div>
+    </article>
+  } @empty {
+    <p>No user data available</p>
+  }
+</section>
