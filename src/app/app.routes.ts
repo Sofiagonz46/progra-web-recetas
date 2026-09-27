@@ -5,6 +5,7 @@ import { Contact } from './pages/contact/contact';
 import { Recipes } from './pages/recipes/recipes';
 import { RecipesList } from './pages/recipes-list/recipes-list';
 import { RecipesDetail } from './pages/recipes-detail/recipes-detail';
+import { RecipesDetailV2 } from './pages/recipes-detail-v2/recipes-detail-v2';
 
 export const routes: Routes = [
   {
@@ -31,5 +32,9 @@ export const routes: Routes = [
   {
     path: 'recipes-detail/:id',
     component: RecipesDetail
+  },
+  {
+    path: 'recipes-detail-v2',
+    component: RecipesDetailV2
   }
 ];
