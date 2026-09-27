@@ -4,14 +4,14 @@
 
   <h2>Selección de filtros</h2>
 
-  <div class="filters">
+  <section class="filters">
 
     <label>
       <input
         type="radio"
-        name="filter"
-        [checked]="filterType === 'NAME'"
-        (change)="selectFilter('NAME')"
+        name="filterType"
+        value="NAME"
+        [(ngModel)]="filterType"
       >
       Por nombre
     </label>
@@ -19,90 +19,60 @@
     <label>
       <input
         type="radio"
-        name="filter"
-        [checked]="filterType === 'DIFFICULTY'"
-        (change)="selectFilter('DIFFICULTY')"
+        name="filterType"
+        value="DIFFICULTY"
+        [(ngModel)]="filterType"
       >
       Por nivel de dificultad
     </label>
 
-  </div>
-
-  <p>
-    El tipo de filtro seleccionado es:
-    {{ filterType }}
-  </p>
-
-
-  @if (filterType === 'NAME') {
-
-    <div class="filter-option">
+    @if (filterType === 'NAME') {
 
       <label>
         Nombre a buscar
+
+        <input
+          type="text"
+          placeholder="Ingrese el nombre de la receta"
+          [(ngModel)]="_name"
+        >
       </label>
 
-      <input
-        type="text"
-        [(ngModel)]="searchName"
-        placeholder="Ingrese el nombre de la receta"
-      >
+    }
 
-      <p>
-        El valor actual del input por búsqueda de nombre es:
-        {{ searchName }}
-      </p>
-
-    </div>
-
-  }
-
-
-  @if (filterType === 'DIFFICULTY') {
-
-    <div class="filter-option">
+    @if (filterType === 'DIFFICULTY') {
 
       <label>
         Opciones de dificultad
+
+        <select [(ngModel)]="_difficulty">
+
+          <option value="">
+            Seleccione una opción
+          </option>
+
+          <option value="easy">
+            Fácil
+          </option>
+
+          <option value="medium">
+            Medium
+          </option>
+
+        </select>
+
       </label>
 
-      <select [(ngModel)]="selectedDifficulty">
+    }
 
-        <option value="">
-          Seleccione una opción
-        </option>
+    <button
+      type="button"
+      (click)="filterRecipesList()"
+    >
+      Filtrar
+    </button>
 
-        <option value="Easy">
-          Easy
-        </option>
-
-        <option value="Medium">
-          Medium
-        </option>
-
-        <option value="Hard">
-          Hard
-        </option>
-
-      </select>
-
-      <p>
-        El valor actual del input por dificultad es:
-        {{ selectedDifficulty }}
-      </p>
-
-    </div>
-
-  }
-
-
-  <button
-    class="filter-button"
-    (click)="filterRecipes()"
-  >
-    Filtrar
-  </button>
-
+  </section>
 
   <table class="recipes-table">
 
@@ -119,7 +89,7 @@
 
     <tbody>
 
-      @for (recipe of filteredRecipes; track recipe.id) {
+      @for (recipe of _recipesListFilter; track recipe.id) {
 
         <tr>
 

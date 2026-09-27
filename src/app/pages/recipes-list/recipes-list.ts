@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Recipes } from '../recipes/recipes';
@@ -11,60 +11,58 @@ import { Recipes } from '../recipes/recipes';
 })
 export class RecipesList {
 
-  constructor(private router: Router) {}
+  recipesList = new Recipes().recipesList;
 
-  recipes = new Recipes().recipesList.recipes.map(recipe => ({
-    id: recipe.id,
-    name: recipe.name,
-    difficulty: recipe.difficulty
-  }));
+  filterType = '';
 
-  filteredRecipes = this.recipes;
+  _name = '';
 
-  filterType: string = '';
+  _difficulty = '';
 
-  searchName: string = '';
+  _recipesListFilter = this.recipesList.recipes;
 
-  selectedDifficulty: string = '';
+  private readonly router = inject(Router);
 
-  selectFilter(type: string): void {
-    this.filterType = type;
+  viewDetails(id: number): void {
+    this.router.navigate(['recipes-detail', id]);
   }
 
-  filterRecipes(): void {
+  filterRecipesList(): void {
 
     if (this.filterType === 'NAME') {
 
-      const search = this.searchName.toLowerCase().trim();
-
-      if (search === '') {
-        this.filteredRecipes = this.recipes;
-        return;
-      }
-
-      this.filteredRecipes = this.recipes.filter(recipe =>
-        recipe.name.toLowerCase().includes(search)
-      );
+      this.filterRecipesListByName();
 
     } else if (this.filterType === 'DIFFICULTY') {
 
-      if (this.selectedDifficulty === '') {
-        this.filteredRecipes = this.recipes;
-        return;
-      }
-
-      this.filteredRecipes = this.recipes.filter(recipe =>
-        recipe.difficulty === this.selectedDifficulty
-      );
+      this.filterRecipesListByDifficulty();
 
     } else {
 
-      this.filteredRecipes = this.recipes;
+      this._recipesListFilter = this.recipesList.recipes;
 
     }
+
+  }
+
+  filterRecipesListByName(): void {
+
+    this._recipesListFilter = this.recipesList.recipes.filter((x) =>
+      x.name.toLowerCase().includes(this._name.toLowerCase())
+    );
+
+  }
+
+  filterRecipesListByDifficulty(): void {
+
+    this._recipesListFilter = this.recipesList.recipes.filter((x) =>
+      x.difficulty.toLowerCase().includes(this._difficulty.toLowerCase())
+    );
+
   }
 
   goToDetails(id: number): void {
     this.router.navigate(['/recipes-detail', id]);
   }
+
 }
